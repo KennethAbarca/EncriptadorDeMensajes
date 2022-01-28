@@ -1,0 +1,76 @@
+<meta charset="UTF-8">
+
+<center><canvas width="600" height="400"></canvas></center>
+
+<br>
+<center><h1>Encriptar/Desencriptar mensaje</h1></center>
+<br>
+<center>Sin mayusculas, ni caracteres especiales</center>
+<br><br>
+
+<center><textarea id="mensaje" rows="10" cols="40" placeholder="Ingrese su mensaje aquí"></textarea></center><br>
+<center><button id="btnEncriptar">Encriptar</button>  <button id="btnDesencriptar">Desencriptar</button></center><br>
+<center><input class="salidaMensaje" type="text" id="salidaMensaje" placeholder="Su texto encriptado" /></center><br>
+<center><button onclick="copy()">Copiar</button></center>
+
+<script>
+
+    function EncriptarMensaje(){
+
+        var encriptarMsj = document.getElementById('mensaje').value;
+
+        if (encriptarMsj == "") {
+            alert("Escriba algo antes de encriptar/desencriptar");
+        }
+
+        var encriptado = encriptarMsj.replace(/e/gi, 'enter').replace(/i/gi, 'imes').replace(/a/gi, 'ai').replace(/o/gi,'ober').replace(/u/gi,'ufat');
+        document.getElementById("salidaMensaje").value = encriptado;
+        document.getElementById("mensaje").value = "";
+        console.log(encriptado);
+        
+    }
+
+    function DesencriptarMensaje() {
+
+        var desencriptar = document.getElementById("mensaje").value;
+        var desencriptado = desencriptar.replace(/ai/gi, 'a').replace(/enter/gi, 'e').replace(/imes/gi, 'i').replace(/ober/gi, 'o').replace(/ufat/gi, 'u');
+        document.getElementById("salidaMensaje").value = desencriptado;
+        document.getElementById("mensaje").value = "";
+        console.log(desencriptado);
+        //input.value = "";
+
+    }
+
+
+    function copy(){
+    
+    var content = document.getElementById('salidaMensaje');
+
+    content.select();
+    document.execCommand('copy');
+    alert("Se ha copiado el mensaje!");
+    document.getElementById('salidaMensaje').value = "";
+}
+
+    
+
+
+    var buttonDesencriptar = document.querySelector("#btnDesencriptar");
+    buttonDesencriptar.onclick = DesencriptarMensaje;
+
+    var buttonEncriptar = document.querySelector("#btnEncriptar");
+    buttonEncriptar.onclick = EncriptarMensaje;
+
+
+
+    var input = document.querySelector("input");
+
+
+
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    pincel.fillStyle = 'lightblue';
+    pincel.fillRect(200, 50, 350 ,300);
+
+
+</script>
